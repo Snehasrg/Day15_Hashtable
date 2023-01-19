@@ -10,11 +10,13 @@ namespace HashTable
     {
         private readonly int Num_Buckets;
         readonly List<LinkedList<K, V>> Bucket_List;
+        public StringBuilder Result;
 
         public LinkedHashMap(int Num_Buckets)
         {
             this.Num_Buckets = Num_Buckets;
             Bucket_List = new List<LinkedList<K, V>>(Num_Buckets);
+            Result = new StringBuilder();
 
             for (int i = 0; i < Num_Buckets; i++)
                 Bucket_List.Add(null);
@@ -36,6 +38,7 @@ namespace HashTable
         }
         public void Add(K Key, V Value)
         {
+            Result.Append(Key + " ");
             int Index = Get_Index(Key);
             LinkedList<K, V> linked_list = Bucket_List[Index];
 
@@ -52,6 +55,5 @@ namespace HashTable
             }
             else hash_node.Value = Value;
         }
-
     }
 }
